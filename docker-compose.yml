@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  legislative-app-backend:
+    build:
+      context: ./backend/.
+    ports:
+      - "8000:8000"
+
+  legislative-app-frontend:
+    build:
+      context: ./frontend/.
+    ports:
+      - "3000:3000"
