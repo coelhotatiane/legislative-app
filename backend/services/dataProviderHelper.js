@@ -31,14 +31,16 @@ class Bill {
   supporters;
   opposers;
   primarySponsor;
+  primarySponsorId;
   voteId;
 
-  constructor(bill, votes, voteResult) {
+  constructor(bill, votes, voteResult, legislators) {
     this.id = bill.id;
     this.title = bill.title;
-    this.primarySponsor = bill.sponsor_id;
+    this.primarySponsorId = bill.sponsor_id;
     this.setVoterId(votes);
     this.setVotersInformation(voteResult);
+    this.setSponsor(legislators);
   }
 
   setVoterId(votes) {
@@ -61,6 +63,15 @@ class Bill {
     });
     this.supporters = supporters;
     this.opposers = opposers;
+  }
+
+  setSponsor(legislators) {
+    legislators.forEach((legislator) => {
+      if(legislator.id === this.primarySponsorId) {
+        this.primarySponsor = legislator.name;
+        return;
+      }
+    });
   }
 }
 

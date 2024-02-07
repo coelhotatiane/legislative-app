@@ -26,12 +26,11 @@ async function getData() {
   const [legislators, votes, bills, votesResult] = result;
   const legislatorsInfo = [];
   const billsInfo = [];
-
   for (const legislator of legislators) {
     legislatorsInfo.push(new Legislator(legislator, votesResult));
   }
   for (const bill of bills) {
-    billsInfo.push(new Bill(bill, votes, votesResult));
+    billsInfo.push(new Bill(bill, votes, votesResult, legislators));
   }
 
   return {
